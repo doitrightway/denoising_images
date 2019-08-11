@@ -1,0 +1,9 @@
+A=imread('nature.jpeg');
+B=A(1:8,1:8)
+C=reshape(B,[],1)
+cvx_begin
+    variable m(64)
+    D=reshape(m,8,8)
+    minimize( sum(m)-sum(m.*log(C))+0.5*sum(abs(reshape(dct2(D),[],1))))
+    subject to
+    
